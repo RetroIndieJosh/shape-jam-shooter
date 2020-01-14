@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO handle colorization per frame/animation
 namespace EightBitsToInfinity
 {
     [System.Serializable]
@@ -12,12 +13,16 @@ namespace EightBitsToInfinity
 
         public Sprite CurrentFrame => m_frameList[m_frameIndex];
 
-        public int m_fps = 30;
+        public int framesPerSecond = 30;
 
-        private float SecPerFrame => 1f / m_fps;
+        private float SecPerFrame => 1f / framesPerSecond;
 
         private int m_frameIndex = 0;
         private float m_timeSinceLastStep = 0f;
+
+        public void AddFrame(Sprite a_frame) {
+            m_frameList.Add(a_frame);
+        }
 
         public void Step(float a_delta) {
             m_timeSinceLastStep += a_delta;
@@ -56,6 +61,14 @@ namespace EightBitsToInfinity
 
         private SpriteAnimation m_activeAnimation = null;
         private SpriteRenderer m_spriteRenderer = null;
+
+        public void AddAnimation(string a_key, SpriteAnimation a_animation) {
+            var entry = new AnimationEntry() {
+                animation = a_animation,
+                key = a_key
+            };
+            m_animationList.Add(entry);
+        }
 
         public void SetAnimation(string a_key) {
             var anim = FindAnimation(a_key);
