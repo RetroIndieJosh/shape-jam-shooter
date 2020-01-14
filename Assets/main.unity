@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 1585233691}
   - component: {fileID: 1585233690}
   - component: {fileID: 1585233692}
+  - component: {fileID: 1585233693}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -607,6 +608,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_filePath: C:\tmp\sprite.png
   m_clearColorAfterLoad: 1
+--- !u!114 &1585233693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585233689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f060a12ed3408714589060f477d39ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_animationList:
+  - key: Foobar
+    animation:
+      m_frameList:
+      - {fileID: 21300000, guid: 7b15fdd1f79fb974080273f7615e3846, type: 3}
+      - {fileID: 21300000, guid: 968b1c4671188374b88ec231520d0adf, type: 3}
+      m_fps: 2
+  - key: 
+    animation:
+      m_frameList: []
+      m_fps: 0
+  - key: 
+    animation:
+      m_frameList: []
+      m_fps: 0
+  - key: 
+    animation:
+      m_frameList: []
+      m_fps: 0
 --- !u!1 &1727270063
 GameObject:
   m_ObjectHideFlags: 0
