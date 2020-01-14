@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_animationList: []
-  m_initialAnimation: 
+  m_initialAnimation: walk
   m_caseSensitive: 1
 --- !u!114 &1585233694
 MonoBehaviour:
@@ -626,10 +626,9 @@ MonoBehaviour:
   m_animationKeyList:
   - walk
   - shoot
-  m_framesPerSecond: 20
+  m_framesPerSecond: 4
   m_relativeTopPath: anim
-  m_scaleMode: 0
-  m_missingFileIsAnError: 1
+  m_scaleMode: 1
 --- !u!1 &1727270063
 GameObject:
   m_ObjectHideFlags: 0

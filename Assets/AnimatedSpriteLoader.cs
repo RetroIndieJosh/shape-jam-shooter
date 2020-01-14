@@ -77,6 +77,7 @@ namespace EightBitsToInfinity
             var tex = LoadTexture(a_key, a_index);
             if (tex == null)
                 return null;
+            tex.filterMode = FilterMode.Point;
 
             var rect = new Rect(0, 0, tex.width, tex.height);
             var sprite = Sprite.Create(tex, rect, Vector2.one * 0.5f);
