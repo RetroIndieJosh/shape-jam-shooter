@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // TODO handle colorization per frame/animation
 namespace EightBitsToInfinity
@@ -10,6 +11,10 @@ namespace EightBitsToInfinity
     {
         [SerializeField] private bool m_loop = true;
         [SerializeField] private List<Sprite> m_frameList = new List<Sprite>();
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent m_onFinish = new UnityEvent();
+        [SerializeField] private UnityEvent m_onStart = new UnityEvent();
 
         public Sprite CurrentFrame => m_frameList[m_frameIndex];
 
@@ -24,12 +29,23 @@ namespace EightBitsToInfinity
             m_frameList.Add(a_frame);
         }
 
+        public void AddFinishEvent(UnityAction a_action) {
+            m_onFinish.AddListener(a_action);
+        }
+
+        public void AddStartEvent(UnityAction a_action) {
+            m_onStart.AddListener(a_action);
+        }
+
         public void Step(float a_delta) {
             m_timeSinceLastStep += a_delta;
             if (m_timeSinceLastStep > SecPerFrame) {
                 ++m_frameIndex;
-                if (m_frameIndex >= m_frameList.Count && m_loop)
-                    m_frameIndex = 0;
+                if (m_frameIndex >= m_frameList.Count) {
+                    m_onFinish.Invoke();
+                    if(m_loop)
+                        m_frameIndex = 0;
+                }
                 m_timeSinceLastStep = 0f;
             }
         }
@@ -70,11 +86,25 @@ namespace EightBitsToInfinity
             m_animationList.Add(entry);
         }
 
+        public SpriteAnimation FindAnimation(string a_key) {
+            foreach (var anim in m_animationList)
+                if (KeyMatch(a_key, anim.key))
+                    return anim.animation;
+            return null;
+        }
+
         public void SetAnimation(string a_key) {
             var anim = FindAnimation(a_key);
             if (anim == null)
                 return;
             m_activeAnimation = anim;
+        }
+
+        public bool VerifyAnimations(List<string> a_keyList) {
+            foreach (var key in a_keyList)
+                if (FindAnimation(key) == null)
+                    return false;
+            return true;
         }
 
         private void Awake() {
@@ -91,13 +121,6 @@ namespace EightBitsToInfinity
                 return;
             m_activeAnimation.Step(Time.deltaTime);
             m_spriteRenderer.sprite = m_activeAnimation.CurrentFrame;
-        }
-
-        private SpriteAnimation FindAnimation(string a_key) {
-            foreach (var anim in m_animationList)
-                if (KeyMatch(a_key, anim.key))
-                    return anim.animation;
-            return null;
         }
 
         private bool KeyMatch(string a_one, string a_two) {
