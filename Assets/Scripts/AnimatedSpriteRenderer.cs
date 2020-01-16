@@ -16,7 +16,8 @@ namespace EightBitsToInfinity
         [SerializeField] private UnityEvent m_onFinish = new UnityEvent();
         [SerializeField] private UnityEvent m_onStart = new UnityEvent();
 
-        public Sprite CurrentFrame => m_frameList[m_frameIndex];
+        public Sprite CurrentFrame => m_frameIndex < 0 || m_frameIndex >= m_frameList.Count 
+            ? null : m_frameList[m_frameIndex];
 
         public int framesPerSecond = 30;
 
@@ -112,6 +113,7 @@ namespace EightBitsToInfinity
 
         private void Awake() {
             m_spriteRenderer = GetComponent<SpriteRenderer>();
+            m_spriteRenderer.sprite = null;
         }
 
         private void Start() {
