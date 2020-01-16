@@ -39,9 +39,7 @@ namespace EightBitsToInfinity
 
         private void Awake() {
             m_animatedSpriteRenderer = GetComponent<AnimatedSpriteRenderer>();
-        }
 
-        private void Start() {
             foreach (var animKey in m_animationKeyList) {
                 var anim = LoadAnimation(animKey);
                 m_animatedSpriteRenderer.AddAnimation(animKey, anim);

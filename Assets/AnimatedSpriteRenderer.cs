@@ -100,11 +100,14 @@ namespace EightBitsToInfinity
             m_activeAnimation = anim;
         }
 
-        public bool VerifyAnimations(List<string> a_keyList) {
-            foreach (var key in a_keyList)
-                if (FindAnimation(key) == null)
-                    return false;
-            return true;
+        public List<string> GetListOfMissingAnimationsExpecting(List<string> a_keyList) {
+            var missingList = new List<string>();
+            foreach (var key in a_keyList) {
+                var anim = FindAnimation(key);
+                if (anim == null)
+                    missingList.Add(key);
+            }
+            return missingList;
         }
 
         private void Awake() {

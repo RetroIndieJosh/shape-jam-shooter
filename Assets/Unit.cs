@@ -16,7 +16,7 @@ namespace EightBitsToInfinity {
         private int m_health = 0;
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            if (collision.gameObject.CompareTag("bullet") == false)
+            if (collision.gameObject.CompareTag(Tags.Bullet) == false)
                 return;
 
             Damage(1);
@@ -30,8 +30,10 @@ namespace EightBitsToInfinity {
 
         private void Start() {
             var animationList = new List<string>() { "die", "idle", "walk" };
-            if (m_animator.VerifyAnimations(animationList) == false) {
-                Debug.LogError($"Missing animations in {name}; require {animationList}");
+            var missingList = m_animator.GetListOfMissingAnimationsExpecting(animationList);
+            if( missingList.Count > 0) {
+                var missingStr = string.Join(", ", missingList);
+                Debug.LogError($"Missing animations in {name}; missing:  {missingStr}");
                 Destroy(gameObject);
                 return;
             }
@@ -57,15 +59,14 @@ namespace EightBitsToInfinity {
             m_animator.SetAnimation("die");
         }
 
-        protected void Move(Vector2 a_direction) {
-            a_direction = a_direction.normalized;
-            if (a_direction.magnitude <= Mathf.Epsilon) {
+        protected void Move(Vector2 a_moveVec) {
+            if (a_moveVec.magnitude <= Mathf.Epsilon) {
                 m_body.velocity = Vector2.zero;
                 m_animator.SetAnimation("idle");
                 return;
             }
             m_animator.SetAnimation("walk");
-            m_body.velocity = a_direction * m_speed;
+            m_body.velocity = a_moveVec * m_speed;
         }
 
         private bool m_isInvincible = false;
