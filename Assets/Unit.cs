@@ -16,10 +16,21 @@ namespace EightBitsToInfinity {
         private int m_health = 0;
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            if (collision.gameObject.CompareTag(Tags.Bullet) == false)
+            var bullet = collision.gameObject.GetComponent<Bullet>();
+            if (bullet == null)
                 return;
 
-            Damage(1);
+            Damage(bullet.Damage);
+            bullet.Collide();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision) {
+            var bullet = collision.GetComponent<Bullet>();
+            if (bullet == null)
+                return;
+
+            Damage(bullet.Damage);
+            bullet.Collide();
         }
 
         private void Awake() {
@@ -39,6 +50,7 @@ namespace EightBitsToInfinity {
             }
 
             var deathAnimation = m_animator.FindAnimation("die");
+            deathAnimation.loop = false;
             deathAnimation.AddFinishEvent(() => {
                 Destroy(gameObject);
             });
@@ -53,6 +65,8 @@ namespace EightBitsToInfinity {
                 Die();
                 return;
             }
+
+            StartCoroutine(RunInvincibleFrames());
         }
 
         protected void Die() {
@@ -73,15 +87,17 @@ namespace EightBitsToInfinity {
 
         private IEnumerator RunInvincibleFrames() {
             m_isInvincible = true;
-            GetComponent<SpriteRenderer>().color = Color.red;
-
-            var timeElapsed = 0f;
-            var invincibleTime = m_invincibleFrames / 60f;
-            while (timeElapsed < invincibleTime)
+            var renderer = GetComponent<SpriteRenderer>();
+            var isRed = false;
+            for (var frameCount = 0; frameCount < m_invincibleFrames; ++frameCount) {
+                if (frameCount % 5 == 0)
+                    isRed = !isRed;
+                renderer.color = isRed ? Color.red : Color.white;
                 yield return null;
+            }
 
             m_isInvincible = false;
-            GetComponent<SpriteRenderer>().color = Color.white;
+            renderer.color = Color.white;
         }
     }
 }

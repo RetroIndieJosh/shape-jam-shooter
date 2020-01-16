@@ -9,7 +9,7 @@ namespace EightBitsToInfinity
     [System.Serializable]
     public class SpriteAnimation
     {
-        [SerializeField] private bool m_loop = true;
+        [SerializeField] public bool loop = true;
         [SerializeField] private List<Sprite> m_frameList = new List<Sprite>();
 
         [Header("Events")]
@@ -43,7 +43,7 @@ namespace EightBitsToInfinity
                 ++m_frameIndex;
                 if (m_frameIndex >= m_frameList.Count) {
                     m_onFinish.Invoke();
-                    if(m_loop)
+                    if(loop)
                         m_frameIndex = 0;
                 }
                 m_timeSinceLastStep = 0f;

@@ -82,8 +82,12 @@ namespace EightBitsToInfinity
 
             // TODO only do this once
             // scale if desired (sprites default to image size)
-            if (m_scaleMode == ScaleMode.ScaleToSprite)
-                transform.localScale = Vector2.one * 100f / sprite.rect.size;
+            if (m_scaleMode == ScaleMode.ScaleToSprite) {
+                var scaleFactor = Vector2.one * 100f / sprite.rect.size;
+                transform.localScale = scaleFactor;
+                // HACK scale collider to match, assume we have circle, use only x
+                GetComponent<CircleCollider2D>().radius = 0.5f / scaleFactor.x;
+            }
 
             return sprite;
         }
