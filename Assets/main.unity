@@ -514,36 +514,6 @@ MonoBehaviour:
   m_relativeFilePath: 
   m_missingFileIsAnError: 1
   m_clearColorAfterLoad: 1
---- !u!1 &1505292512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1505292513}
-  m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1505292513
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505292512}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -143.24329, y: -65.056885, z: -2390.5906}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1585233689
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +528,7 @@ GameObject:
   - component: {fileID: 1585233694}
   - component: {fileID: 1585233692}
   - component: {fileID: 1585233695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,6 +613,10 @@ MonoBehaviour:
   m_healthMax: 5
   m_speed: 10
   m_invincibleFrames: 60
+  m_playerBulletPrefab: {fileID: 8470150377139052782, guid: 1254693c38dbba246886bbc334455366,
+    type: 3}
+  m_fireVelocity: 20
+  m_firePerSecond: 2
 --- !u!114 &1585233693
 MonoBehaviour:
   m_ObjectHideFlags: 0
