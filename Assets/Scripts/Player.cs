@@ -56,11 +56,17 @@ namespace EightBitsToInfinity
             var move = new Vector2(moveX, moveY).normalized;
             Move(move);
 
-            var fireX = Input.GetAxis("Fire Horizontal");
-            var fireY = Input.GetAxis("Fire Vertical");
-            var fire = new Vector2(fireX, fireY).normalized;
-            if(fire.magnitude > Mathf.Epsilon)
+            if (Input.GetMouseButton(0)) {
+                var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var fire = ( mousePos - transform.position ).normalized;
                 Fire(fire);
+            } else {
+                var fireX = Input.GetAxis("Fire Horizontal");
+                var fireY = Input.GetAxis("Fire Vertical");
+                var fire = new Vector2(fireX, fireY).normalized;
+                if (fire.magnitude > Mathf.Epsilon)
+                    Fire(fire);
+            }
 
             m_timeSinceLastFire += Time.deltaTime;
 

@@ -10,6 +10,7 @@ Created in one week (well, about 7 hours)
 
 Keyboard: Move with WASD and shoot with arrow keys
 Gamepad: Move with left stick and shoot with right stick (untested)
+Mouse: Move with WASD and shoot by clicking (will fire in direction you click)
 
 ## How to Customize Assets
 

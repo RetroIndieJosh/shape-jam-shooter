@@ -85,6 +85,9 @@ namespace EightBitsToInfinity {
         protected void Die() {
             m_body.velocity = Vector2.zero;
 
+            if (m_dieSound != null)
+                AudioSource.PlayClipAtPoint(m_dieSound,  Camera.main.transform.position, 0.8f);
+
             var deathAnimation = m_animator.FindAnimation("die");
             if (deathAnimation == null) {
                 Destroy(gameObject);
@@ -94,8 +97,6 @@ namespace EightBitsToInfinity {
             deathAnimation.loop = false;
             deathAnimation.AddFinishEvent(() => Destroy(gameObject));
 
-            if (m_dieSound != null)
-                AudioSource.PlayClipAtPoint(m_dieSound,  Camera.main.transform.position);
             m_animator.SetAnimation("die");
         }
 
