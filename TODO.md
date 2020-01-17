@@ -1,8 +1,8 @@
-- room limit with wall texture (under)
-- move camera with player
-- label title and author
-- add music (with credit)
+- destroy bullets at walls (or given distance - optimization)
 - variable enemy health
 - enemy shooting (and animation)
 - missing animation => warning + revert to original image
 - export list of required image paths
+- display player health
+- game over
+- count number of kills

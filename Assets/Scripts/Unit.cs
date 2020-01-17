@@ -10,6 +10,7 @@ namespace EightBitsToInfinity {
         [SerializeField] private int m_healthMax = 5;
         [SerializeField] private float m_speed = 10f;
         [SerializeField] private float m_invincibleFrames = 60;
+        [SerializeField] private AudioClip m_dieSound = null;
 
         [Header("Limits")]
         [SerializeField] private bool m_renderBoundsInEditor = false;
@@ -92,6 +93,8 @@ namespace EightBitsToInfinity {
         }
 
         protected void Die() {
+            if (m_dieSound != null)
+                AudioSource.PlayClipAtPoint(m_dieSound, Vector3.zero);
             m_animator.SetAnimation("die");
         }
 
