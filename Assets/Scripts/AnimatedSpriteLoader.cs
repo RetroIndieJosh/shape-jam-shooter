@@ -35,6 +35,9 @@ namespace EightBitsToInfinity
             + "Sprite: Scale to match the size set in the editor")]
         private ScaleMode m_scaleMode = ScaleMode.ScaleToLoadedImage;
 
+        [SerializeField]
+        private SpriteMeshType m_meshType = SpriteMeshType.Tight;
+
         private AnimatedSpriteRenderer m_animatedSpriteRenderer = null;
 
         private void Awake() {
@@ -78,7 +81,7 @@ namespace EightBitsToInfinity
             tex.filterMode = FilterMode.Point;
 
             var rect = new Rect(0, 0, tex.width, tex.height);
-            var sprite = Sprite.Create(tex, rect, Vector2.one * 0.5f);
+            var sprite = Sprite.Create(tex, rect, Vector2.one * 0.5f, 100, 0, m_meshType);
 
             // TODO only do this once
             // scale if desired (sprites default to image size)

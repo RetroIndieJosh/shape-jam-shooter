@@ -78,6 +78,9 @@ namespace EightBitsToInfinity
         [SerializeField, Tooltip("Whether to clear the color (to white) when loading an image")]
         private bool m_clearColorAfterLoad = true;
 
+        [SerializeField]
+        private SpriteMeshType m_meshType = SpriteMeshType.Tight;
+
         private SpriteRenderer m_spriteRenderer = null;
         private Image m_image = null;
 
@@ -107,8 +110,8 @@ namespace EightBitsToInfinity
             var rect = new Rect(0, 0, tex.width, tex.height);
 
             // construct a Sprite for Unity to use
-            // NOTE: this sprite defaults to 100 ppu
-            var sprite = Sprite.Create(tex, rect, Vector2.one * 0.5f);
+            // TODO: set PPU as option
+            var sprite = Sprite.Create(tex, rect, Vector2.one * 0.5f, 100, 0, m_meshType);
 
             // if we're doing a Sprite Renderer...
             if (m_spriteRenderer != null) {
