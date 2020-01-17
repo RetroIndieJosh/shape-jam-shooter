@@ -110,6 +110,7 @@ namespace EightBitsToInfinity
                 return;
             }
             m_activeAnimation = anim;
+            m_spriteRenderer.color = Color.white;
         }
 
         private void Awake() {

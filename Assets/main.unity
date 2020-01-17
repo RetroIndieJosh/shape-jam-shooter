@@ -1209,7 +1209,7 @@ MonoBehaviour:
   - idle
   m_framesPerSecond: 4
   m_relativeTopPath: anim/player
-  m_scaleMode: 1
+  m_scaleMode: 0
   m_meshType: 1
 --- !u!50 &1585233695
 Rigidbody2D:

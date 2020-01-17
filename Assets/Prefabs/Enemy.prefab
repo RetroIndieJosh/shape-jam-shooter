@@ -115,12 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_animationKeyList:
   - walk
-  - shoot
-  - die
   - idle
+  - die
   m_framesPerSecond: 4
-  m_relativeTopPath: anim/player
-  m_scaleMode: 1
+  m_relativeTopPath: anim/enemy
+  m_scaleMode: 0
   m_meshType: 1
 --- !u!50 &923813342805331764
 Rigidbody2D:

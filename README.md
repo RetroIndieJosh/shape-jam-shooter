@@ -14,12 +14,7 @@ Mouse: Move with WASD and shoot by clicking (will fire in direction you click)
 
 ## How to Customize Assets
 
-The following assets can be customized:
-- player
-- bullet
-- enemy
-
-Inside the [INSERT FOLDER NAME] directory, add the following:
+Inside the `Shape Jam Shooter_Data` directory, add the following:
 
 - anim/player/idle/^.png
 - anim/player/walk/^.png
@@ -34,12 +29,26 @@ Inside the [INSERT FOLDER NAME] directory, add the following:
 - texture/floor.png
 - texture/walls.png
 
-For animations (with ^.png) each frame must be named in sequence, starting with 0.
+Note that the player, enemies, and bullet have no sense of direction/rotation,
+so you should use vaguely circular or square images. A top-down perspective is
+strongly recommended. Collisions are also circular and slightly smaller than
+the visual, so ideally these sprites will have some amount of transparency on
+the border.
+
+Player and enemies will match the scale of the sprites you import. The default
+size is 100x100 for player and 200x200 for enemies, but you can adjust the game
+difficulty by using differently sized sprites.
+
+The textures will be tiled in the x- and y-axes.
+
+Icons will be squashed into a square shape, so square is your best bet.
+
+For animations (with ^.png), name each frame in sequence, starting with 0.
 
 In other words: 0.png, 1.png, 2.png for a 3-frame animation.
 
 Only .png format is supported.
 
-For example, the second frame of animation for the player shoot animation will be the file:
-[INSERT FOLDER NAME]/anim/player/walk/1.png
+For example, the second frame of animation for the player shoot animation will
+be the file: `Shape Jam Shooter_Data/anim/player/walk/1.png`
 

@@ -13,7 +13,7 @@ namespace EightBitsToInfinity
         [SerializeField] private float m_playerSpeed = 10f;
 
         [SerializeField] private GameObject m_playerBulletPrefab = null;
-        [SerializeField] private float m_fireVelocity = 20f;
+        [SerializeField] private float m_fireSpeed = 20f;
         [SerializeField] private float m_firePerSecond = 2f;
 
         [SerializeField] private AudioClip m_shootSound = null;
@@ -90,7 +90,7 @@ namespace EightBitsToInfinity
             Debug.Log("Fire " + a_fireVec);
             var bullet = Instantiate(m_playerBulletPrefab, transform.position, Quaternion.identity);
             var body = bullet.GetComponent<Rigidbody2D>();
-            body.velocity = a_fireVec * m_fireVelocity;
+            body.velocity = a_fireVec * m_fireSpeed;
             m_timeSinceLastFire = 0f;
         }
     }
