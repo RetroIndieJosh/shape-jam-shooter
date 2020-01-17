@@ -1,5 +1,3 @@
-- destroy bullets at walls (or given distance - optimization)
-- variable enemy health
 - enemy shooting (and animation)
 - missing animation => warning + revert to original image
 - export list of required image paths
