@@ -14,7 +14,7 @@ namespace EightBitsToInfinity
 
         private float m_timeSinceLastFire = 0f;
 
-        private void Update() {
+        override protected void Update() {
             var moveX = Input.GetAxis("Horizontal");
             var moveY = Input.GetAxis("Vertical");
             var move = new Vector2(moveX, moveY).normalized;
@@ -27,6 +27,8 @@ namespace EightBitsToInfinity
                 Fire(fire);
 
             m_timeSinceLastFire += Time.deltaTime;
+
+            base.Update();
         }
 
         private void Fire(Vector2 a_fireVec) {

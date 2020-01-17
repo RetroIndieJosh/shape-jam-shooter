@@ -1,4 +1,3 @@
-- background texture (remember mesh type full texture)
 - room limit with wall texture (under)
 - move camera with player
 - label title and author
@@ -6,3 +5,4 @@
 - variable enemy health
 - enemy shooting (and animation)
 - missing animation => warning + revert to original image
+- export list of required image paths
