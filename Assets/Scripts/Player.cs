@@ -79,7 +79,7 @@ namespace EightBitsToInfinity
                 return;
 
             if (m_shootSound != null)
-                AudioSource.PlayClipAtPoint(m_shootSound, Vector3.zero);
+                AudioSource.PlayClipAtPoint(m_shootSound, Camera.main.transform.position + Vector3.forward);
 
             Debug.Log("Fire " + a_fireVec);
             var bullet = Instantiate(m_playerBulletPrefab, transform.position, Quaternion.identity);

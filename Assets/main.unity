@@ -387,7 +387,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0f69a014f0a781949bf04787e225a727, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -931,8 +931,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -60}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: -10, y: -20}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1552829029
 MonoBehaviour:
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 516
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1277,7 +1277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71eea214d70e034d9c66f1ae90a146e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enemyCount: 30
   m_enemyPrefab: {fileID: 923813342805331765, guid: b6bfd340965a1124d8cc55fd278c89f1,
     type: 3}
   m_renderBoundsInEditor: 0
@@ -1531,11 +1530,11 @@ RectTransform:
   m_Father: {fileID: 1727270067}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -20}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 400, y: 50}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2002221444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,6 +1548,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_timer: {fileID: 1552829031}
+  m_wave: 0
+  m_spawner: {fileID: 1654763775}
+  m_baseEnemies: 1
+  m_addEnemiesPerWave: 2
 --- !u!114 &2002221445
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -95,7 +95,7 @@ namespace EightBitsToInfinity {
             deathAnimation.AddFinishEvent(() => Destroy(gameObject));
 
             if (m_dieSound != null)
-                AudioSource.PlayClipAtPoint(m_dieSound, Vector3.zero);
+                AudioSource.PlayClipAtPoint(m_dieSound,  Camera.main.transform.position);
             m_animator.SetAnimation("die");
         }
 
