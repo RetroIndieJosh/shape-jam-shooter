@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 923813342805331765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -174,8 +174,8 @@ MonoBehaviour:
   m_invincibleFrames: 20
   m_dieSound: {fileID: 8300000, guid: c4d8eca893b263643992ccbc2052c41a, type: 3}
   m_renderBoundsInEditor: 0
-  m_lowerBound: {x: -10, y: -10}
-  m_upperBound: {x: 10, y: 10}
+  m_lowerBound: {x: -20, y: -20}
+  m_upperBound: {x: 20, y: 20}
   m_healthRandomMin: 1
   m_healthRandomMax: 5
   m_speedRandomMin: 5

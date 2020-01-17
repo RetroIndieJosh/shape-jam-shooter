@@ -10,6 +10,7 @@ namespace EightBitsToInfinity {
         [SerializeField] private float m_invincibleFrames = 60;
         [SerializeField] private AudioClip m_dieSound = null;
 
+        // TODO make a separate Bounds class for this
         [Header("Limits")]
         [SerializeField] private bool m_renderBoundsInEditor = false;
         [SerializeField] protected Vector2 m_lowerBound = new Vector2(-100, -100);
