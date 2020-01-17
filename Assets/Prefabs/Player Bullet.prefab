@@ -96,7 +96,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 983b2e90fd4466f4687a4f5f19d6c32d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9579072, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_damage: 1
+  m_moveLimit: 100
 --- !u!114 &7529480039900878781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_animationList: []
   m_initialAnimation: 
   m_caseSensitive: 1
+  requiredAnimationList: []
 --- !u!114 &3007329621337410806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +154,7 @@ MonoBehaviour:
   m_framesPerSecond: 10
   m_relativeTopPath: anim/bullet
   m_scaleMode: 1
+  m_meshType: 1
 --- !u!58 &666806880552918677
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ namespace EightBitsToInfinity
 
         public int framesPerSecond = 30;
 
+        public int FrameCount => m_frameList.Count;
         private float SecPerFrame => 1f / framesPerSecond;
 
         private int m_frameIndex = 0;
@@ -71,15 +72,17 @@ namespace EightBitsToInfinity
         [Header("Options")]
         [SerializeField] private bool m_caseSensitive = true;
 
-        private Sprite CurrentSprite {
-            get => m_spriteRenderer.sprite;
-            set => m_spriteRenderer.sprite = value;
-        }
+        public List<string> requiredAnimationList = new List<string>();
 
         private SpriteAnimation m_activeAnimation = null;
+        private Color m_originalColor = Color.white;
+        private Sprite m_originalSprite = null;
         private SpriteRenderer m_spriteRenderer = null;
 
         public void AddAnimation(string a_key, SpriteAnimation a_animation) {
+            if (a_animation.FrameCount == 0)
+                return;
+
             var entry = new AnimationEntry() {
                 animation = a_animation,
                 key = a_key
@@ -88,31 +91,31 @@ namespace EightBitsToInfinity
         }
 
         public SpriteAnimation FindAnimation(string a_key) {
-            foreach (var anim in m_animationList)
+            foreach (var anim in m_animationList) {
                 if (KeyMatch(a_key, anim.key))
                     return anim.animation;
+            }
+
             return null;
+        }
+        private void Revert() {
+            m_spriteRenderer.sprite = m_originalSprite;
+            m_spriteRenderer.color = m_originalColor;
         }
 
         public void SetAnimation(string a_key) {
             var anim = FindAnimation(a_key);
-            if (anim == null)
+            if (anim == null) {
+                Revert();
                 return;
-            m_activeAnimation = anim;
-        }
-
-        public List<string> GetListOfMissingAnimationsExpecting(List<string> a_keyList) {
-            var missingList = new List<string>();
-            foreach (var key in a_keyList) {
-                var anim = FindAnimation(key);
-                if (anim == null)
-                    missingList.Add(key);
             }
-            return missingList;
+            m_activeAnimation = anim;
         }
 
         private void Awake() {
             m_spriteRenderer = GetComponent<SpriteRenderer>();
+            m_originalSprite = m_spriteRenderer.sprite;
+            m_originalColor = m_spriteRenderer.color;
             m_spriteRenderer.sprite = null;
         }
 

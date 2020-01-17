@@ -59,11 +59,10 @@ namespace EightBitsToInfinity
                 framesPerSecond = m_framesPerSecond
             };
 
-            // load until we find an index that doesn't have a matching file
-            Sprite sprite = null;
             var index = 0;
             do {
-                sprite = LoadFrame(a_key, index);
+                // load until we find an index that doesn't have a matching file
+                var sprite = LoadFrame(a_key, index);
                 if (sprite == null)
                     break;
                 animation.AddFrame(sprite);

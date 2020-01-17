@@ -1,6 +1,4 @@
-- enemy shooting (and animation)
 - missing animation => warning + revert to original image
-- export list of required image paths
-- display player health
 - game over
-- count number of kills
+- enemy shooting (and animation)
+- export list of required image paths

@@ -33,11 +33,14 @@ namespace EightBitsToInfinity
             if (IsDead)
                 return;
 
-            if (transform.position.x < m_lowerBound.x || transform.position.x > m_upperBound.x
-                || transform.position.y < m_lowerBound.y || transform.position.y > m_upperBound.y) {
-
-                m_moveDir = -m_moveDir;
-            }
+            // turn if we're going out of bounds
+            var containmentRect = new Rect() {
+                min = m_lowerBound,
+                max = m_upperBound
+            };
+            var nextPos = (Vector2)transform.position + ( m_moveDir * m_speed * 0.1f );
+            if( containmentRect.Contains(nextPos) == false)
+                m_moveDir = new Vector2(-m_moveDir.y, m_moveDir.x);
 
             m_timeSinceLastDirChange += Time.deltaTime;
             if (m_timeSinceLastDirChange >= m_dirChangeSec) {
@@ -49,7 +52,7 @@ namespace EightBitsToInfinity
                 m_dirChangeSec = Random.Range(m_dirChangeSecMin, m_dirChangeSecMax);
             }
 
-            Move(m_moveDir);
+            Move(m_moveDir.normalized);
             base.Update();
         }
     }

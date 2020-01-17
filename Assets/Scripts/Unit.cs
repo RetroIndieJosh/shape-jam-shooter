@@ -23,6 +23,8 @@ namespace EightBitsToInfinity {
 
         private AnimatedSpriteRenderer m_animator = null;
         private Rigidbody2D m_body = null;
+        private bool m_isInvincible = false;
+        private Color m_originalColor = Color.white;
 
         virtual protected void OnCollisionEnter2D(Collision2D collision) {
             var bullet = collision.gameObject.GetComponent<Bullet>();
@@ -45,6 +47,7 @@ namespace EightBitsToInfinity {
         private void Awake() {
             m_animator = GetComponent<AnimatedSpriteRenderer>();
             m_body = GetComponent<Rigidbody2D>();
+            m_originalColor = GetComponent<SpriteRenderer>().color;
         }
 
         private void OnDrawGizmos() {
@@ -59,21 +62,6 @@ namespace EightBitsToInfinity {
         }
 
         protected virtual void Start() {
-            var animationList = new List<string>() { "die", "idle", "walk" };
-            var missingList = m_animator.GetListOfMissingAnimationsExpecting(animationList);
-            if( missingList.Count > 0) {
-                var missingStr = string.Join(", ", missingList);
-                Debug.LogError($"Missing animations in {name}; missing:  {missingStr}");
-                Destroy(gameObject);
-                return;
-            }
-
-            var deathAnimation = m_animator.FindAnimation("die");
-            deathAnimation.loop = false;
-            deathAnimation.AddFinishEvent(() => {
-                Destroy(gameObject);
-            });
-
             Health = m_healthMax;
         }
 
@@ -95,6 +83,16 @@ namespace EightBitsToInfinity {
 
         protected void Die() {
             m_body.velocity = Vector2.zero;
+
+            var deathAnimation = m_animator.FindAnimation("die");
+            if (deathAnimation == null) {
+                Destroy(gameObject);
+                return;
+            }
+
+            deathAnimation.loop = false;
+            deathAnimation.AddFinishEvent(() => Destroy(gameObject));
+
             if (m_dieSound != null)
                 AudioSource.PlayClipAtPoint(m_dieSound, Vector3.zero);
             m_animator.SetAnimation("die");
@@ -110,8 +108,6 @@ namespace EightBitsToInfinity {
             m_body.velocity = a_moveVec * m_speed;
         }
 
-        private bool m_isInvincible = false;
-
         private IEnumerator RunInvincibleFrames() {
             m_isInvincible = true;
             var renderer = GetComponent<SpriteRenderer>();
@@ -119,7 +115,7 @@ namespace EightBitsToInfinity {
             for (var frameCount = 0; frameCount < m_invincibleFrames; ++frameCount) {
                 if (frameCount % 5 == 0)
                     isRed = !isRed;
-                renderer.color = isRed ? Color.red : Color.white;
+                renderer.color = isRed ? Color.red : m_originalColor;
                 yield return null;
             }
 
