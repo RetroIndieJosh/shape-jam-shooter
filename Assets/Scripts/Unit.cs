@@ -15,14 +15,14 @@ namespace EightBitsToInfinity {
         [SerializeField] protected Vector2 m_lowerBound = new Vector2(-100, -100);
         [SerializeField] protected Vector2 m_upperBound = new Vector2(100, 100);
 
-        public bool IsDead => m_health <= 0;
+        public bool IsDead => Health <= 0;
+        public int Health { get; private set; } = 0;
 
         protected int m_healthMax = 5;
         protected float m_speed = 10f;
 
         private AnimatedSpriteRenderer m_animator = null;
         private Rigidbody2D m_body = null;
-        private int m_health = 0;
 
         virtual protected void OnCollisionEnter2D(Collision2D collision) {
             var bullet = collision.gameObject.GetComponent<Bullet>();
@@ -74,7 +74,7 @@ namespace EightBitsToInfinity {
                 Destroy(gameObject);
             });
 
-            m_health = m_healthMax;
+            Health = m_healthMax;
         }
 
         virtual protected void Update() {
@@ -84,8 +84,8 @@ namespace EightBitsToInfinity {
             if (m_isInvincible)
                 return;
 
-            m_health -= a_amount;
-            if (m_health <= 0) {
+            Health -= a_amount;
+            if (Health <= 0) {
                 Die();
                 return;
             }

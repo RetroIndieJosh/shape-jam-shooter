@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace EightBitsToInfinity
 {
     public class Player : Unit
     {
+        [SerializeField] private TextMeshProUGUI m_healthDisplay = null;
+
         [SerializeField] private int m_playerHealthMax = 10;
         [SerializeField] private float m_playerSpeed = 10f;
 
@@ -44,6 +47,9 @@ namespace EightBitsToInfinity
         override protected void Update() {
             if (IsDead)
                 return;
+
+            if (m_healthDisplay != null)
+                m_healthDisplay.text = $"{Health}/{m_healthMax}";
 
             var moveX = Input.GetAxis("Horizontal");
             var moveY = Input.GetAxis("Vertical");

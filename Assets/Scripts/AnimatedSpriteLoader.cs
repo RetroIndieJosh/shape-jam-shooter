@@ -89,7 +89,8 @@ namespace EightBitsToInfinity
                 var scaleFactor = Vector2.one * 100f / sprite.rect.size;
                 transform.localScale = scaleFactor;
                 // HACK scale collider to match, assume we have circle, use only x
-                GetComponent<CircleCollider2D>().radius = 0.5f / scaleFactor.x;
+                // shrink by 10% to favor the player
+                GetComponent<CircleCollider2D>().radius = 0.5f / scaleFactor.x * 0.9f;
             }
 
             return sprite;
